@@ -1,0 +1,25 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - # Add the local IP address of the proxy server
+
+api:
+
+alexa:
+  smart_home:
+    locale: fr-FR
+    endpoint: https://api.eu.amazonalexa.com/v3/events
+    client_id: amzn1.application-oa2-client.xxx # Add the Amazon's client id
+    client_secret: xxx # Add the Amazon's password

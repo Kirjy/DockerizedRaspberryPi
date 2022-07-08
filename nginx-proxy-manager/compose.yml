@@ -1,0 +1,39 @@
+version: "3"
+
+networks:
+  frontend:
+    external: false
+    name: frontend
+  backend:
+
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    environment:
+      DB_SQLITE_FILE: "/data/npm.sqlite"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - frontend
+      - backend
+    container_name: npm-web
+
+  db:
+    image: 'linuxserver/mariadb:arm32v7-latest'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'XXX'
+      MYSQL_DATABASE: 'nginx-proxy-manager'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'XXX'
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      - backend
+    container_name: npm-db
