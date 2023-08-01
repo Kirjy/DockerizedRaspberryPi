@@ -10,7 +10,7 @@ services:
   app:
     image: nextcloud:27 #specifying the version is mandatory as Nextcloud won't allow upgrade that skip a major release
     restart: always
-    volumes:
+    volumes: #using many volumes in order to have a specific one for files, one for config etc...
       - ./data/nextcloud:/var/www/html
       - ./data/apps:/var/www/html/custom_apps
       - ./data/config:/var/www/html/config
