@@ -36,7 +36,7 @@ $CONFIG = array (
   'dbtableprefix' => 'oc_',
   'mysql.utf8mb4' => true,
   'dbuser' => 'nextcloud',
-  'dbpassword' => 'W1lFWpL42nXb3HyxGT0=',
+  'dbpassword' => 'CHANGE_ME',
   'installed' => true,
   'mail_from_address' => 'myemail',
   'mail_smtpmode' => 'smtp',
