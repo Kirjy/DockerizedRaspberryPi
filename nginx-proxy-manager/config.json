@@ -4,7 +4,7 @@
     "host": "db",
     "name": "nginx-proxy-manager",
     "user": "npm",
-    "password": "XXX",
+    "password": "CHANGE_ME",
     "port": 3306
   }
 }
