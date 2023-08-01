@@ -1,14 +1,14 @@
 version: "3"
 
 networks:
-  frontend:
+  frontend: # this network will be used for any other docker that need an access through the reverse proxy
     external: false
     name: frontend
   backend:
 
 services:
   app:
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: 'jc21/nginx-proxy-manager:2.9.22'
     restart: always
     ports:
       - '80:80'
@@ -25,13 +25,13 @@ services:
     container_name: npm-web
 
   db:
-    image: 'linuxserver/mariadb:arm32v7-latest'
+    image: 'linuxserver/mariadb:latest'
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 'XXX'
+      MYSQL_ROOT_PASSWORD: 'CHANGE_ME'
       MYSQL_DATABASE: 'nginx-proxy-manager'
       MYSQL_USER: 'npm'
-      MYSQL_PASSWORD: 'XXX'
+      MYSQL_PASSWORD: 'CHANGE_ME'
     volumes:
       - ./data/mysql:/var/lib/mysql
     networks:
