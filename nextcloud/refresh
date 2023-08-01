@@ -1,2 +1,3 @@
 # refreshes the files' list in case you added some manually
 docker exec -ti --user www-data nextcloud-app /var/www/html/occ files:scan --all
+# scans the files to generate thumbnails. Needs the preview generator app to be installed first.
