@@ -8,11 +8,11 @@ networks:
 services:
   homeassistant:
     container_name: z2m-ha
-    image: "ghcr.io/home-assistant/home-assistant:stable"
+    image: "homeassistant/home-assistant:stable"
     volumes:
       - ./ha-config:/config
       - /etc/localtime:/etc/localtime:ro
-    restart: unless-stopped
+    restart: always
     privileged: true
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -28,21 +28,21 @@ services:
   mqtt:
     container_name: z2m-mosquitto
     image: eclipse-mosquitto:latest
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./mosquitto/data:/mosquitto/data
-      - ./mosquitto/log:/mosquitto/log
+      - ./mosquitto/log:/mosquitto/log # easy access to logs
     networks:
       - backend
     ports:
       - 1883:1883
       - 9001:9001
-      
+
   zigbee2mqtt:
     container_name: z2m-zigbee2mqtt
-    image: koenkk/zigbee2mqtt
-    restart: unless-stopped
+    image: koenkk/zigbee2mqtt:latest
+    restart: always
     volumes:
       - ./zigbee2mqtt:/app/data
       - /run/udev:/run/udev:ro
