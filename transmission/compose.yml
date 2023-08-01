@@ -1,0 +1,29 @@
+version: "2.1"
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./config:/config
+      - /mnt/routershare/downloads:/downloads/complete # downloads are saved on a mounted samba share
+      - /mnt/routershare/downloads/incomplete:/downloads/incomplete # downloads are saved on a mounted samba share
+    networks:
+      - frontend
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: always
+    dns: # using this DNS to prevent some blocking with the actual ones
+      - 8.8.8.8
+      - 8.8.4.4
+    labels:
+      - io.portainer.accesscontrol.public
+networks:
+  frontend:
+    driver: bridge
+    external: true
