@@ -8,12 +8,15 @@ networks:
 services:
 
   app:
-    image: nextcloud
+    image: nextcloud:27 #specifying the version is mandatory as Nextcloud won't allow upgrade that skip a major release
     restart: always
     volumes:
-      - ./nextcloud:/var/www/html
+      - ./data/nextcloud:/var/www/html
+      - ./data/apps:/var/www/html/custom_apps
+      - ./data/config:/var/www/html/config
+      - ./data/data:/var/www/html/data
     environment:
-      MYSQL_PASSWORD: 'XXX'
+      MYSQL_PASSWORD: 'CHANGE_ME'
       MYSQL_DATABASE: 'nextcloud' 
       MYSQL_USER: 'nextcloud'
       MYSQL_HOST: 'nextcloud-db'
@@ -28,13 +31,13 @@ services:
     container_name: nextcloud-app
 
   db:
-    image: 'linuxserver/mariadb:arm32v7-latest'
+    image: 'mariadb:latest'
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 'XXX'
+      MYSQL_ROOT_PASSWORD: 'CHANGE_ME'
       MYSQL_DATABASE: 'nextcloud' 
       MYSQL_USER: 'nextcloud'
-      MYSQL_PASSWORD: 'XXX'
+      MYSQL_PASSWORD: 'CHANGE_ME'
       TZ: 'Europe/Paris'
     volumes:
       - ./mariadb/mysql:/var/lib/mysql
