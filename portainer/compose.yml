@@ -1,0 +1,15 @@
+version: "3"
+networks:
+  backend:
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    restart: unless-stopped
+    ports:
+      - '9000:9000'
+    volumes:
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: portainer-app
+    networks:
+      - backend
