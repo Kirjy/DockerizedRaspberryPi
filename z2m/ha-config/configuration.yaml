@@ -7,17 +7,9 @@ tts:
   - platform: google_translate
 http:
   use_x_forwarded_for: true
-  trusted_proxies: 
+  trusted_proxies: # will prevent from being blocked when trying to access through the reverse proxy. Change it !
     - 172.17.0.0/16
     - 192.168.128.1
-    - 192.168.128.2
-    - 192.168.128.3
-    - 192.168.128.4
-    - 192.168.128.5
-    - 192.168.128.6
-    - 192.168.128.7
-    - 192.168.128.8
-    - 192.168.128.9
 
 automation: !include automations.yaml
 script: !include scripts.yaml
