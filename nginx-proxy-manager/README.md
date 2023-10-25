@@ -1,4 +1,5 @@
 #Nginx Proxy Manager
+
 Nginx is a reverse proxy. 
 
 The purpose here is to take every incoming connexion on 443 port, check a certificate and redirect the connexion to the good container.
