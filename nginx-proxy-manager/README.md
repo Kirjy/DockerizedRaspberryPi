@@ -8,3 +8,6 @@ The web interface will be used to avoid writting the YAML code all by yourself. 
 
 Please be careful. The standard mapping is on ports 80 and 443.
 You will either have to change these bindings or read the following documentation to allow access to unprivileged ports : https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports
+
+Default user : admin@example.com
+Default password : changeme
