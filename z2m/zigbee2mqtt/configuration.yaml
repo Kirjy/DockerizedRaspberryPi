@@ -1,0 +1,10 @@
+homeassistant: true
+permit_join: false
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://YOUR_IP:1883
+  user: CHANGE_ME
+  password: CHANGE_ME
+serial:
+  adapter: deconz
+  port: /dev/ttyACM0
