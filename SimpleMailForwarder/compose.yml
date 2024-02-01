@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    image: zixia/simple-mail-forwarder:latest
+    container_name: simple-mail-forwarder
+    ports:
+      - "25:25"
+    environment:
+      - SMF_CONFIG=@domaine.dm:address@gmail.com:password
+    restart: unless-stopped
+    volumes:
+      - ./data/postfix:/var/log/postfix
+      - ./data/certs:/etc/postfix/cert
+      - ./data/dkim:/var/db/dkim
+      - ./data/mail:/var/mail
