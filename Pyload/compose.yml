@@ -1,0 +1,25 @@
+version: "2"
+
+networks:
+  frontend:
+    driver: bridge
+    external: true
+
+services:
+    pyload:
+      image: lscr.io/linuxserver/pyload-ng:latest
+      container_name: pyload-app
+      privileged: true
+      ports:
+        - 9999:8000
+        - 9666:9666
+      environment:
+        - PUID=0
+        - PGID=0
+        - TZ=Europe/Paris
+      volumes:
+        - ./config:/config
+        - /mnt/routershare/downloads:/downloads
+      networks:
+        - frontend
+      restart: unless-stopped
