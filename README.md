@@ -1,4 +1,4 @@
-# DockerizedRaspberryPi
+# Dockerized Server
 A Raspberry PI suite using only dockers that may communicate between each other.
 
 This repo is my current mini server configuration. 
