@@ -1,5 +1,5 @@
 # Dockerized Server
-A Raspberry PI suite using only dockers that may communicate between each other.
+A N100 suite using only dockers that may communicate between each other.
 
 This repo is my current mini server configuration. 
 It works on Raspberry Pi OS 64 bits with minor changes but it is currently running on N100 CPu. With some slight changes of the mariadb containers, it can work on 32 bits, but I wouldn't recommand it will need old versions to be working.
