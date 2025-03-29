@@ -1,0 +1,8 @@
+docker exec -it nextcloud-db bash
+
+mariadb -u root -p
+h8I1f3Xo3ggMcbK3GAeTc8SyyN5xD/0efa523MyqbPc=
+
+USE nextcloud;
+SELECT * FROM oc_bruteforce_attempts;
+DELETE FROM oc_bruteforce_attempts;

@@ -14,7 +14,7 @@ It provides the clean installation of:
    - Mosquitto
    - Zigbee2Mqtt
    - Home Assistant
-  - A portainer container in order to have an interface to manage easily your containers. This part is in beta in my installation as containers were created before adding this container.
-  - A transmission interface in order to easily download torrents on a local samba share while not at home.
+ - A portainer container in order to have an interface to manage easily your containers. This part is in beta in my installation as containers were created before adding this container.
+ - A transmission interface in order to easily download torrents on a local samba share while not at home.
 
-Please note that passwords have been changed to "CHANGE_ME" text but you will also need to change other things in configuration files (paths, smtp account, ...)
+Please note that any sentitive information is described as ${MY_VARIABLE}. These information are stored in a .env file that is stored in the compose.yml folder. 

@@ -4,20 +4,20 @@ services:
     image: lscr.io/linuxserver/transmission:latest
     container_name: transmission
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Europe/London
     volumes:
-      - ./config:/config
-      - /mnt/routershare/downloads:/downloads/complete # downloads are saved on a mounted samba share
-      - /mnt/routershare/downloads/incomplete:/downloads/incomplete # downloads are saved on a mounted samba share
+      - ./data:/config
+      - ${TRANSMISSION_DOWNLOADS_FOLDER}:/downloads/complete # downloads are saved on a mounted samba share
+      - ${TRANSMISSION_INCOMPLETE_FOLDER}:/downloads/incomplete # downloads are saved on a mounted samba share
     networks:
       - frontend
     ports:
       - 9091:9091
       - 51413:51413
       - 51413:51413/udp
-    restart: always
+    restart: unless-stopped
     dns: # using this DNS to prevent some blocking with the actual ones
       - 8.8.8.8
       - 8.8.4.4

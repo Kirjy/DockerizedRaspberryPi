@@ -3,7 +3,7 @@ networks:
   backend:
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer:latest
     restart: unless-stopped
     ports:
       - '9000:9000'
