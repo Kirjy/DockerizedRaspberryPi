@@ -1,5 +1,3 @@
-version: '3'
-
 networks:
   frontend:
     external: true
@@ -8,18 +6,20 @@ networks:
 services:
 
   app:
-    image: nextcloud:27 #specifying the version is mandatory as Nextcloud won't allow upgrade that skip a major release
+    image: nextcloud:31 #specifying the version is mandatory as Nextcloud won't allow upgrade that skip a major release
     restart: always
     volumes: #using many volumes in order to have a specific one for files, one for config etc...
-      - ./data/nextcloud:/var/www/html
-      - ./data/apps:/var/www/html/custom_apps
-      - ./data/config:/var/www/html/config
+      - ./data/cutsom_apps:/var/www/html/custom_apps
       - ./data/data:/var/www/html/data
+      - ./data/html:/var/www/html #needed for updating
+      - ./data/config:/var/www/html/config
+    ports:
+      - 8000:80
     environment:
-      MYSQL_PASSWORD: 'CHANGE_ME'
-      MYSQL_DATABASE: 'nextcloud' 
-      MYSQL_USER: 'nextcloud'
-      MYSQL_HOST: 'nextcloud-db'
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_HOST: ${MYSQL_HOST}
       TZ: 'Europe/Paris'
     networks:
       - frontend
@@ -34,13 +34,13 @@ services:
     image: 'mariadb:latest'
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 'CHANGE_ME'
-      MYSQL_DATABASE: 'nextcloud' 
-      MYSQL_USER: 'nextcloud'
-      MYSQL_PASSWORD: 'CHANGE_ME'
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: 'Europe/Paris'
     volumes:
-      - ./mariadb/mysql:/var/lib/mysql
+      - ./data/mariadb/mysql:/var/lib/mysql
     networks:
       - backend
     container_name: nextcloud-db
