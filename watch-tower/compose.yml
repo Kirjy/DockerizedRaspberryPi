@@ -1,6 +1,20 @@
 version: "3"
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
+
 services:
   watchtower:
     image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - frontend
+      - backend
+    environment:
+      - TZ=Europe/Paris
+    command: --interval 86400 --cleanup --label-enable

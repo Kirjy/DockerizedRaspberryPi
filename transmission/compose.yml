@@ -6,7 +6,7 @@ services:
     environment:
       - PUID=0
       - PGID=0
-      - TZ=Europe/London
+      - TZ=Europe/Paris
     volumes:
       - ./data:/config
       - ${TRANSMISSION_DOWNLOADS_FOLDER}:/downloads/complete # downloads are saved on a mounted samba share
@@ -23,6 +23,12 @@ services:
       - 8.8.4.4
     labels:
       - io.portainer.accesscontrol.public
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/transmission/web/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 networks:
   frontend:
     driver: bridge
