@@ -1,44 +1,48 @@
 # Simple Mail Forwarder
 
-Ce service permet de rediriger les emails envoyés vers votre domaine vers une adresse email spécifique.
+A simple mail forwarding service that can forward emails from one address to another.
 
 ## Configuration
 
-1. Créez un fichier `.env` dans le même répertoire que le `compose.yaml` avec les variables suivantes :
-   ```
-   DESTINATION_EMAIL_DOMAIN=votre-domaine.com
-   DESTINATION_EMAIL_ADDRESS=votre-email@example.com
-   DESTINATION_EMAIL_PASSWORD=votre-mot-de-passe
-   ```
+The service is configured through environment variables:
 
-2. Assurez-vous que les ports suivants sont disponibles :
-   - Port 25 (SMTP)
+- `SMTP_HOST`: SMTP server hostname
+- `SMTP_PORT`: SMTP server port
+- `SMTP_USER`: SMTP username
+- `SMTP_PASS`: SMTP password
+- `SMTP_FROM`: Sender email address
+- `SMTP_TO`: Recipient email address
 
-## Utilisation
+## Usage
 
-1. Démarrez le service :
-   ```bash
-   docker compose up -d
-   ```
+1. Configure the environment variables in your `.env` file
+2. Start the service with Docker Compose
+3. The service will forward all emails received to the configured recipient
 
-2. Vérifiez les logs :
-   ```bash
-   docker compose logs -f
-   ```
+## Security
 
-## Sécurité
+- Uses TLS for secure email transmission
+- Credentials are stored securely in environment variables
+- No data is stored permanently
 
-- Le service utilise TLS pour la sécurité des communications
-- Les certificats sont stockés dans le dossier `data/certs`
-- Les logs sont stockés dans le dossier `data/postfix`
+## Maintenance
 
-## Dépannage
+- Regular updates recommended
+- Monitor logs for any issues
+- Check email delivery status
 
-1. Vérifiez les logs dans `data/postfix`
-2. Assurez-vous que le port 25 n'est pas bloqué par votre fournisseur d'accès
-3. Vérifiez que les certificats sont correctement générés
+## Troubleshooting
 
-## Liens utiles
+- Check the logs for error messages
+- Verify SMTP server connectivity
+- Ensure all environment variables are set correctly
+- Check firewall settings
+- Verify DNS records
 
-Pour plus d'informations, consultez :
-https://webapplicationconsultant.com/docker/how-to-use-docker-to-forward-emails-sent-to-your-domain-to-your-email-works-for-gmail/
+## Useful Links
+
+- [Docker Hub](https://hub.docker.com/r/zixia/simple-mail-forwarder)
+- [GitHub Repository](https://github.com/zixia/simple-mail-forwarder)
+- [Documentation](https://github.com/zixia/simple-mail-forwarder/wiki)
+- [Tutorial](https://webapplicationconsultant.com/docker/how-to-use-docker-to-forward-emails-sent-to-your-domain-to-your-email-works-for-gmail/)
+

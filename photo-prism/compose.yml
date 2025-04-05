@@ -56,12 +56,6 @@ services:
       - "./data/Pictures:/photoprism/originals"               # Original media files (DO NOT REMOVE)
       - "./data/storage:/photoprism/storage"                  # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
     container_name: photoprism-app
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:2342/api/v1/status"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
 
   ## Database Server (recommended)
   ## see https://docs.photoprism.app/getting-started/faq/#should-i-use-sqlite-mariadb-or-mysql
@@ -81,9 +75,3 @@ services:
     networks:
       - backend
     container_name: photoprism-db
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${PHOTOPRISM_DATABASE_PASSWORD}"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s

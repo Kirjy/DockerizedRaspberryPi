@@ -4,14 +4,14 @@ networks:
   backend:
 
 services:
-
+  # Main Nextcloud Service
   app:
-    image: nextcloud:31 #specifying the version is mandatory as Nextcloud won't allow upgrade that skip a major release
+    image: nextcloud:31 # Specifying the version is mandatory as Nextcloud won't allow upgrade that skip a major release
     restart: always
-    volumes: #using many volumes in order to have a specific one for files, one for config etc...
+    volumes: # Using many volumes in order to have a specific one for files, one for config etc...
       - ./data/cutsom_apps:/var/www/html/custom_apps
       - ./data/data:/var/www/html/data
-      - ./data/html:/var/www/html #needed for updating
+      - ./data/html:/var/www/html # Needed for updating
       - ./data/config:/var/www/html/config
     ports:
       - 8000:80
@@ -30,6 +30,7 @@ services:
       - npm-web
     container_name: nextcloud-app
 
+  # MariaDB Database for Nextcloud
   db:
     image: 'mariadb:latest'
     restart: always

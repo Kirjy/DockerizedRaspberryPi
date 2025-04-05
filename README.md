@@ -1,20 +1,20 @@
-# DockerizedRaspberryPi
-A Raspberry PI suite using only dockers that may communicate between each other.
+# Dockerized Server
+A suite of Docker containers that can communicate with each other.
 
-This repo is my current Raspberry Pi configuration. 
-It works on Raspberry Pi OS 64 bits. With some slight changes of the mariadb containers, it can work on 32 bits, but I wouldn't recommand it will need old versions to be working.
+This repository contains my current server configuration. 
+It works on N100 servers or any other server. With some slight changes to the MariaDB containers, it can work on 32-bit, but I wouldn't recommend it as it will need old versions to work.
 
-I'm not a docker expert and I may have done some mistakes. So please, feel free to report any mistake or contact me in case of any remarks.
+I'm not a Docker expert and I may have made some mistakes. So please, feel free to report any issues or contact me with any remarks.
 
-It provides the clean installation of:
- - A nginx proxy manager as a reverse proxy in order to manage the external accesses to your installation through the 443 port (https) through a nice interface.
-   This container has to be launched first as it will also create the frontend network used by the other containers. 
- - Nextcloud for personnal files sharing and management
- - A z2m folder which installs everything needed to use zigbee to mqtt as a broker for your zigbee installation :
+It provides a clean installation of:
+ - Nginx Proxy Manager as a reverse proxy to manage external access to your installation through port 443 (HTTPS) with a nice interface.
+   This container must be launched first as it will also create the frontend network used by other containers.
+ - Nextcloud for personal file sharing and management
+ - A z2m folder that installs everything needed to use Zigbee to MQTT as a broker for your Zigbee installation:
    - Mosquitto
-   - Zigbee2Mqtt
+   - Zigbee2MQTT
    - Home Assistant
- - A portainer container in order to have an interface to manage easily your containers. This part is in beta in my installation as containers were created before adding this container.
- - A transmission interface in order to easily download torrents on a local samba share while not at home.
+ - A Portainer container to have an interface to easily manage your containers. This part is in beta in my installation as containers were created before adding this container.
+ - A Transmission interface to easily download torrents on a local Samba share while not at home.
 
-Please note that any sentitive information is described as ${MY_VARIABLE}. These information are stored in a .env file that is stored in the compose.yml folder. 
+Please note that any sensitive information is described as ${MY_VARIABLE}. This information is stored in a .env file that is stored in the compose.yml folder. 

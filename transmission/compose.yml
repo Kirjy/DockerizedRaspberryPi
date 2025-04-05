@@ -1,8 +1,23 @@
-version: "2.1"
 services:
+  # Main Transmission Service
   transmission:
     image: lscr.io/linuxserver/transmission:latest
-    container_name: transmission
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    restart: unless-stopped
+    stop_grace_period: 10s
+    security_opt:
+      - no-new-privileges:true
+      - no-sandbox:true
+    read_only: true
+    ports:
+      - "9091:9091" # HTTP port (host:container)
+      - "51413:51413" # Torrent port (host:container)
+      - "51413:51413/udp" # Torrent port UDP (host:container)
+    networks:
+      - frontend
+      - backend
     environment:
       - PUID=0
       - PGID=0
@@ -11,25 +26,10 @@ services:
       - ./data:/config
       - ${TRANSMISSION_DOWNLOADS_FOLDER}:/downloads/complete # downloads are saved on a mounted samba share
       - ${TRANSMISSION_INCOMPLETE_FOLDER}:/downloads/incomplete # downloads are saved on a mounted samba share
-    networks:
-      - frontend
-    ports:
-      - 9091:9091
-      - 51413:51413
-      - 51413:51413/udp
-    restart: unless-stopped
-    dns: # using this DNS to prevent some blocking with the actual ones
-      - 8.8.8.8
-      - 8.8.4.4
-    labels:
-      - io.portainer.accesscontrol.public
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9091/transmission/web/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+    container_name: transmission-app
+
 networks:
   frontend:
     driver: bridge
     external: true
+  backend:
