@@ -20,7 +20,7 @@ services:
     networks:
       - frontend
       - backend
-    container_name: npm-web
+    container_name: npm-app
 
   db:
     image: 'mariadb:latest'
