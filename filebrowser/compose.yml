@@ -5,7 +5,7 @@ networks:
 
 services:
   filebrowser:
-    container_name: filebrowser
+    container_name: filebrowser-app
     restart: unless-stopped
     image: 'filebrowser/filebrowser:s6'
     ports:

@@ -6,7 +6,7 @@ networks:
 services:
   vaultwarden:
     image: vaultwarden/server:latest
-    container_name: vaultwarden
+    container_name: vaultwarden-app
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true

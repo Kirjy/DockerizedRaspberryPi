@@ -5,7 +5,7 @@ networks:
 
 services:
   homeassistant:
-    container_name: z2m-home-assistant
+    container_name: z2m-home-assistant-app
     image: "homeassistant/home-assistant:latest"
     volumes:
       - ./data/ha-config:/config
