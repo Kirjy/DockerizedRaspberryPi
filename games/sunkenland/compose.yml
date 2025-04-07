@@ -14,3 +14,10 @@ services:
       - 27015:27015
     volumes:
       - ./data/:/sunkenland/Worlds
+    build:
+      secrets:
+        - sunkenland_game_world_guid
+
+secrets:
+  sunkenland_game_world_guid:
+    environment: GAME_WORLD_GUID
