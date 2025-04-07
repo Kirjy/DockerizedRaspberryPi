@@ -1,18 +1,8 @@
-networks:
-  frontend:
-    external: true
-  backend:
-    external: true
 services:
   watchtower:
     image: containrrr/watchtower
-    container_name: watchtower-app
-    restart: unless-stopped
+    command:
+      - --cleanup=true
+    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - frontend
-      - backend
-    environment:
-      - TZ=Europe/Paris
-    command: --interval 86400 --cleanup --label-enable
