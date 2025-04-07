@@ -7,7 +7,7 @@ It works on N100 servers or any other server. With some slight changes to the Ma
 I'm not a Docker expert and I may have made some mistakes. So please, feel free to report any issues or contact me with any remarks.
 
 It provides a clean installation of:
- - Nginx Proxy Manager as a reverse proxy to manage external access to your installation through port 443 (HTTPS) with a nice interface. NginxProxyManager comes up with OpenAppSec which is a WAF to avoid random injection requests to be sent to containers.
+ - Nginx Proxy Manager as a reverse proxy to manage external access to your installation through port 443 (HTTPS) with a nice interface. NginxProxyManager comes up with OpenAppSec which is a WAF to avoid random injection attempts to be sent to containers.
    This container must be launched first as it will also create the frontend network used by other containers.
  - FileBrowser for personal file sharing and management. This comes up as the Nextcloud replacement which was too heavy and too buggy for my needs.
  - A z2m folder that installs everything needed to use Zigbee to MQTT as a broker for your Zigbee installation:

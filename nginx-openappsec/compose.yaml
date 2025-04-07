@@ -18,7 +18,7 @@ services:
       - ./data/data:/data
       - ./data/letsencrypt:/etc/letsencrypt
       - ./data/appsec-logs:/ext/appsec-logs
-      - ./appsec-localconfig:/ext/appsec
+      - ./data/appsec-config/local_policy.yaml:/ext/appsec/local_policy.yaml
     networks:
       - frontend
       - backend
@@ -37,7 +37,7 @@ services:
       - ./data/appsec-config:/etc/cp/conf
       - ./data/appsec-data:/etc/cp/data
       - ./data/appsec-logs:/var/log/nano_agent
-      - ./appsec-localconfig:/ext/appsec
+      - ./data/appsec-config/local_policy.yaml:/ext/appsec/local_policy.yaml
     command: /cp-nano-agent --standalone
     networks:
       - backend
